@@ -22,7 +22,6 @@ Create a `.env` file in the project root (same folder as `docker-compose.yml`). 
 |----------|-------------|
 | `VICTORIA_URL` | Base URL of VictoriaMetrics (must start with `http://` or `https://`). |
 | `VICTORIA_TIMEOUT_SECONDS` | HTTP timeout for VictoriaMetrics calls (default `30`). |
-| `GRAFANA_URL` | Grafana base URL (validated like other HTTP URLs). |
 | `POSTGRES_USER` | Database user; used by Docker Compose for the bundled Postgres service. |
 | `POSTGRES_PASSWORD` | Database password; same value must appear in `DATABASE_URL` when connecting from the host. |
 | `POSTGRES_DB` | Database name. |
