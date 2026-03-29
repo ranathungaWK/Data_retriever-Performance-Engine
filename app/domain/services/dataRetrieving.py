@@ -64,7 +64,7 @@ class AnalysisService:
             "latency_std": f'stddev_over_time(probe_duration_seconds{{job="{req.blackbox_probe_name}"}}[{win}])',
             "error_rate": f'1 - avg_over_time(probe_success{{job="{req.blackbox_probe_name}"}}[{win}])',
 
-            # --- CADVISOR (User-defined window) ---
+        
             "cpu_usage_rate": f'rate(container_cpu_usage_seconds_total{{container_label_com_docker_compose_service="{req.container_name}"}}[{win}])',
             "memory_usage": f'avg_over_time(container_memory_usage_bytes{{container_label_com_docker_compose_service="{req.container_name}"}}[{win}])',
             "net_throughput": (
@@ -72,10 +72,15 @@ class AnalysisService:
                 f'rate(container_network_transmit_bytes_total{{container_label_com_docker_compose_service="{req.container_name}"}}[{win}])'
             ),
 
-            # --- NODE (User-defined window) ---
-            "disk_io_rate": f'sum(rate(node_disk_io_time_seconds_total[{win}]))',
-            "mem_available": f'avg_over_time(node_memory_MemAvailable_bytes[{win}])',
-            "node_cpu_total": f'sum(rate(node_cpu_seconds_total[{win}]))'
+            
+            "disk_io_rate": f'rate(node_disk_io_time_seconds_total[{win}])',
+            "node_cpu_total": f'rate(node_cpu_seconds_total[{win}])',
+
+            "container_memory_usage_bytes": f'container_memory_usage_bytes{{container_label_com_docker_compose_service="{req.container_name}"}}',
+            "container_start_time_seconds" : f'container_start_time_seconds{{container_label_com_docker_compose_service="{req.container_name}"}}',
+            "probe_success": f'probe_success{{job="{req.blackbox_probe_name}"}}',
+            "node_memory_MemAvailable_bytes":'node_memory_MemAvailable_bytes'
+
         }
 
         keys = list(queries.keys())
