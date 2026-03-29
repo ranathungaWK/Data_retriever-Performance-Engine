@@ -87,6 +87,3 @@ Request/response shapes are defined in `app/schemas/request.py` and visible unde
 - `app/db/` — Session and base metadata.
 - `app/infrastructure/victoria_client.py` — VictoriaMetrics client.
 
-## License
-
-Add your license here.
